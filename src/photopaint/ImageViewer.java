@@ -5,6 +5,8 @@
  */
 package photopaint;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -20,6 +22,8 @@ public class ImageViewer extends javax.swing.JFrame {
      * Creates new form ImageViewer
      */
     
+    
+    //declare variables
        private BufferedImage image;
     
        
@@ -28,17 +32,18 @@ public class ImageViewer extends javax.swing.JFrame {
     
         
         initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);//set default clause to Dispose
+        //center the frame
+        this.setLocationRelativeTo(null);  
         try {
-            System.out.println("Image opening");
-            image = ImageIO.read(file);
-            System.out.println(file.getName());
             
-            this.setTitle(file.getName());
-            this.setSize(this.getWidth(), image.getHeight()+100);
-            label.setIcon(new ImageIcon(image));
-            ImageTool.setCurrentImage(image);
+            //initialize the buffered image
+            image = ImageIO.read(file);
+           
+            this.setTitle(file.getName());//set title
+            this.setSize(this.getWidth(), image.getHeight()+100);//set the size
+            label.setIcon(new ImageIcon(image));// add imag eto label
+            ImageTool.setCurrentImage(image); // calling the setCurrentImage function
             
             } catch (Exception e) {
            

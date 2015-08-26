@@ -27,14 +27,15 @@ public class ImageTool extends javax.swing.JFrame {
      public static ArrayList<ImageViewer> opened = new ArrayList<>();
      //create a new filechooser object defult location set to desktop
        private JFileChooser open = new JFileChooser("C:\\Users\\Samitha\\Desktop\\");
-       //buffered image to hol the opened image
+       //buffered image to hold the opened image
          private static BufferedImage thisImage;
        
-       public static void setCurrentImage(BufferedImage currentImage){
-        ImageTool.thisImage = currentImage;
+         //set the current to  thisImage (initialize thisImage)
+       public static void setCurrentImage(BufferedImage current){
+        ImageTool.thisImage = current;
     }
     
-    
+    // default constructor
     public ImageTool() {
         initComponents();
          this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,8 +44,8 @@ public class ImageTool extends javax.swing.JFrame {
        
        // open.setMultiSelectionEnabled(false);
         
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setSize(screenSize.width, this.getHeight());
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        this.setSize(screenSize.width, this.getHeight());
     }
 
     
@@ -146,7 +147,7 @@ public class ImageTool extends javax.swing.JFrame {
         
          if(val1 == JFileChooser.APPROVE_OPTION)
         {
-            //open the file
+            //open the selected file
             File file = open.getSelectedFile();
                       
             //create a new jframe ImageViwer
