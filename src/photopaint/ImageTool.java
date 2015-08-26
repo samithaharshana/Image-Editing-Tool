@@ -6,10 +6,13 @@
 package photopaint;
 
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
 /**
@@ -24,7 +27,7 @@ public class ImageTool extends javax.swing.JFrame {
     
        //*********************declare varivbles here******************************* 
     //array list to contain opened images 
-     public static ArrayList<ImageViewer> opened = new ArrayList<>();
+     public static ArrayList<ImageViewer> openedarray = new ArrayList<>();
      //create a new filechooser object defult location set to desktop
        private JFileChooser open = new JFileChooser("C:\\Users\\Samitha\\Desktop\\");
        //buffered image to hold the opened image
@@ -91,6 +94,11 @@ public class ImageTool extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Save");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Exit");
@@ -155,7 +163,7 @@ public class ImageTool extends javax.swing.JFrame {
             //get the original file name and display title as jframe
             newImage.setImageName(file.getName());
             //adding the opened image to the array list
-            opened.add(newImage);
+            openedarray.add(newImage);
             
             //Tne selected image is shown 
             newImage.setVisible(true);
@@ -168,6 +176,29 @@ public class ImageTool extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        //choose a sav elocation
+         JFileChooser save = new JFileChooser();
+          try {
+              //get the Bufferd imaged from the array list
+            ImageViewer img = openedarray.get(0);
+                
+            BufferedImage image = img.getImage();
+            //show the choose box and get the location
+            int returnVal = save.showSaveDialog(this);
+            
+            if(returnVal==JFileChooser.APPROVE_OPTION)
+            {
+                File file = save.getSelectedFile();//get the selected file to file
+                ImageIO.write(image, "jpg", file);// saving
+            }
+        } catch (HeadlessException | IOException e) {
+           
+        }
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

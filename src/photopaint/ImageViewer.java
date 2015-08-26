@@ -29,8 +29,7 @@ public class ImageViewer extends javax.swing.JFrame {
        
        //this is the constructor 
     public ImageViewer(File file){
-    
-        
+      
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);//set default clause to Dispose
         //center the frame
@@ -53,11 +52,16 @@ public class ImageViewer extends javax.swing.JFrame {
         initComponents();
     }
     
-       
+    
     public void setImageName(String name){
         this.setTitle(name);
     }
 
+    
+       //returning the image file
+    public BufferedImage getImage(){
+        return this.image;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
