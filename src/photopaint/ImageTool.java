@@ -31,13 +31,17 @@ public class ImageTool extends javax.swing.JFrame {
      //create a new filechooser object defult location set to desktop
        private JFileChooser open = new JFileChooser("C:\\Users\\Samitha\\Desktop\\");
        //buffered image to hold the opened image
-         private static BufferedImage thisImage;
-       
-         //set the current to  thisImage (initialize thisImage)
+         private static  BufferedImage thisImage;
+       private static  BufferedImage thisImage1;
+         //set the current to  thisImage (initialize thisImage when open an image)
        public static void setCurrentImage(BufferedImage current){
-        ImageTool.thisImage = current;
+        ImageTool.thisImage = current; // thisImage = Opened Image
     }
     
+       
+         public static void setCurrentImage1(BufferedImage current){
+        ImageTool.thisImage1 = current; // thisImage = Opened Image
+    }
     // default constructor
     public ImageTool() {
         initComponents();
@@ -51,8 +55,8 @@ public class ImageTool extends javax.swing.JFrame {
 //        this.setSize(screenSize.width, this.getHeight());
     }
 
-    
- 
+    //creating SetChanel object
+   SetChanel chanel= new SetChanel();
     
     
     /**
@@ -66,68 +70,105 @@ public class ImageTool extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        OpenImage = new javax.swing.JMenuItem();
+        SaveImage = new javax.swing.JMenuItem();
+        Exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        RGBChanel = new javax.swing.JMenuItem();
+        Histogram = new javax.swing.JMenuItem();
+        Clone = new javax.swing.JMenuItem();
+        Brightness = new javax.swing.JMenuItem();
+        Negative = new javax.swing.JMenuItem();
+        Normalize = new javax.swing.JMenuItem();
+        Resample = new javax.swing.JMenuItem();
+        RGB = new javax.swing.JMenu();
+        redchanel = new javax.swing.JMenuItem();
+        greenchanel = new javax.swing.JMenuItem();
+        bluechanel = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Photo Paint");
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setPreferredSize(new java.awt.Dimension(300, 100));
         setResizable(false);
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("Open");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        OpenImage.setText("Open");
+        OpenImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                OpenImageActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(OpenImage);
 
-        jMenuItem2.setText("Save");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        SaveImage.setText("Save");
+        SaveImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                SaveImageActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(SaveImage);
 
-        jMenuItem3.setText("Exit");
-        jMenu1.add(jMenuItem3);
+        Exit.setText("Exit");
+        jMenu1.add(Exit);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Tool");
 
-        jMenuItem4.setText("RGB Division");
-        jMenu2.add(jMenuItem4);
+        RGBChanel.setText("RGB Division");
+        RGBChanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RGBChanelActionPerformed(evt);
+            }
+        });
+        jMenu2.add(RGBChanel);
 
-        jMenuItem5.setText("Show Histogram");
-        jMenu2.add(jMenuItem5);
+        Histogram.setText("Show Histogram");
+        jMenu2.add(Histogram);
 
-        jMenuItem6.setText("Clone");
-        jMenu2.add(jMenuItem6);
+        Clone.setText("Clone");
+        jMenu2.add(Clone);
 
-        jMenuItem7.setText("Brightness/Contrast");
-        jMenu2.add(jMenuItem7);
+        Brightness.setText("Brightness/Contrast");
+        jMenu2.add(Brightness);
 
-        jMenuItem8.setText("Negative");
-        jMenu2.add(jMenuItem8);
+        Negative.setText("Negative");
+        jMenu2.add(Negative);
 
-        jMenuItem9.setText("Normalize/ Contrast Stretching");
-        jMenu2.add(jMenuItem9);
+        Normalize.setText("Normalize/ Contrast Stretching");
+        jMenu2.add(Normalize);
 
-        jMenuItem10.setText("Resampling/Zooming");
-        jMenu2.add(jMenuItem10);
+        Resample.setText("Resampling/Zooming");
+        jMenu2.add(Resample);
+
+        RGB.setText("RGB");
+
+        redchanel.setText("RED");
+        redchanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redchanelActionPerformed(evt);
+            }
+        });
+        RGB.add(redchanel);
+
+        greenchanel.setText("GREEN");
+        greenchanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                greenchanelActionPerformed(evt);
+            }
+        });
+        RGB.add(greenchanel);
+
+        bluechanel.setText("BLUE");
+        bluechanel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bluechanelActionPerformed(evt);
+            }
+        });
+        RGB.add(bluechanel);
+
+        jMenu2.add(RGB);
 
         jMenuBar1.add(jMenu2);
 
@@ -147,7 +188,7 @@ public class ImageTool extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void OpenImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenImageActionPerformed
         // TODO add your handling code here:
         
         //open the choosing dialogbox to choose a image
@@ -158,16 +199,16 @@ public class ImageTool extends javax.swing.JFrame {
             //open the selected file
             File file = open.getSelectedFile();
                       
-            //create a new jframe ImageViwer
+            //create a new jframe ImageViwer         
+
             ImageViewer newImage = new ImageViewer(file);
             //get the original file name and display title as jframe
             newImage.setImageName(file.getName());
             //adding the opened image to the array list
-            openedarray.add(newImage);
+            openedarray.add(newImage); // send the object to array list
             
             //Tne selected image is shown 
             newImage.setVisible(true);
-            
            
             
         }else{
@@ -175,9 +216,9 @@ public class ImageTool extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_OpenImageActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void SaveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveImageActionPerformed
         // TODO add your handling code here:
         //choose a sav elocation
          JFileChooser save = new JFileChooser();
@@ -198,7 +239,65 @@ public class ImageTool extends javax.swing.JFrame {
            
         }
         
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_SaveImageActionPerformed
+
+  
+    
+    private void RGBChanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RGBChanelActionPerformed
+        // TODO add your handling code here:
+        
+        BufferedImage rgb= thisImage;
+        
+        //getting the red channel from original image
+       RGB red = new RGB(chanel.getRedChannel(rgb),  "red channel");
+        red.setSize(rgb.getWidth(), rgb.getHeight());
+        red.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        red.setVisible(true);
+        
+        //getting the green channel from original image
+        RGB green = new RGB(chanel.getGreenChannel(rgb),  "green channel");
+        green.setSize(rgb.getWidth()+50, rgb.getHeight()+50);
+        green.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        green.setVisible(true);
+        
+        //getting the blue channel from original
+       RGB blue = new RGB(chanel.getBlueChannel(rgb),  "blue channel");
+        blue.setSize(rgb.getWidth()+50, rgb.getHeight()+50);
+        blue.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        blue.setVisible(true);
+    }//GEN-LAST:event_RGBChanelActionPerformed
+
+    private void redchanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redchanelActionPerformed
+        // TODO add your handling code here:
+       final BufferedImage rgb= thisImage;
+        
+        //getting the red channel from original image
+       RGB red = new RGB(chanel.getRedChannel(rgb),  "red channel");
+        red.setSize(rgb.getWidth(), rgb.getHeight());
+        red.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        red.setVisible(true);
+        
+    }//GEN-LAST:event_redchanelActionPerformed
+
+    private void greenchanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenchanelActionPerformed
+        // TODO add your handling code here:
+       final  BufferedImage rgb= thisImage;
+           //getting the green channel from original image
+         RGB green = new RGB(chanel.getGreenChannel(rgb),  "green channel");
+        green.setSize(rgb.getWidth()+50, rgb.getHeight()+50);
+        green.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        green.setVisible(true);
+    }//GEN-LAST:event_greenchanelActionPerformed
+
+    private void bluechanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bluechanelActionPerformed
+        // TODO add your handling   code here:
+       final  BufferedImage rgb= thisImage;
+          //getting the blue channel from original
+        RGB blue = new RGB(chanel.getGreenChannel(rgb),  "blue channel");
+        blue.setSize(rgb.getWidth()+50, rgb.getHeight()+50);
+        blue.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        blue.setVisible(true);
+    }//GEN-LAST:event_bluechanelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,18 +336,22 @@ public class ImageTool extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Brightness;
+    private javax.swing.JMenuItem Clone;
+    private javax.swing.JMenuItem Exit;
+    private javax.swing.JMenuItem Histogram;
+    private javax.swing.JMenuItem Negative;
+    private javax.swing.JMenuItem Normalize;
+    private javax.swing.JMenuItem OpenImage;
+    private javax.swing.JMenu RGB;
+    private javax.swing.JMenuItem RGBChanel;
+    private javax.swing.JMenuItem Resample;
+    private javax.swing.JMenuItem SaveImage;
+    private javax.swing.JMenuItem bluechanel;
+    private javax.swing.JMenuItem greenchanel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem redchanel;
     // End of variables declaration//GEN-END:variables
 }

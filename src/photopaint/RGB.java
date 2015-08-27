@@ -5,77 +5,41 @@
  */
 package photopaint;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
  * @author Samitha
  */
-public class ImageViewer extends javax.swing.JFrame {
+public class RGB extends javax.swing.JFrame {
 
     /**
-     * Creates new form ImageViewer
+     * Creates new form RGB
      */
-    
-    
-    //declare variables
+    public RGB() {
+        initComponents();
+    }
+
+      //declare variables
        private BufferedImage image;
     
-       
-       //this is the constructor 
-    public ImageViewer(File file){
-              initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);//set default clause to Dispose
-        //center the frame
-        this.setLocationRelativeTo(null);  
-        try {
-            
-            //initialize the buffered image
-            //file read as an image
-            image = ImageIO.read(file);
-           
-            this.setTitle(file.getName());//set title
-            this.setSize(this.getWidth(), image.getHeight());//set the size
-            label.setIcon(new ImageIcon(image));// add imag eto label
-            ImageTool.setCurrentImage(image); // calling the setCurrentImage function
-            
-            } catch (Exception e) {
-           
-        }
-    }
+           //this is the constructor 
+      //another constructor getting  image end title
     
-        //another constructor getting  image end title
-    
-        public ImageViewer(BufferedImage image, String title){
+        public RGB(BufferedImage image, String title){
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle(title);
-        
         label.setIcon(new ImageIcon(image));//set image to label 
-        ImageTool.setCurrentImage(image);// calling setCurrentImage and initialize the buffere image 
         this.image = image;
         
         
     }
     
-    
-  
-    
-    
-    public void setImageName(String name){
-        this.setTitle(name);
-    }
-
-    
-       //returning the image file
-    public BufferedImage getImage(){
-        return this.image;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,22 +49,22 @@ public class ImageViewer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ScrollPane = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
         label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ScrollPane.setViewportView(label);
+        jScrollPane1.setViewportView(label);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
         );
 
         pack();
@@ -123,26 +87,26 @@ public class ImageViewer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImageViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RGB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImageViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RGB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImageViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RGB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImageViewer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RGB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new ImageViewer().setVisible(true);
+                new RGB().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane ScrollPane;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }
